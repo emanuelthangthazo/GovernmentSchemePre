@@ -1,0 +1,449 @@
+/**
+ * Government Scheme Predictor - Custom Styles
+ * Professional government-themed styling with modern design elements
+ */
+
+/* ==================== Root Variables ==================== */
+:root {
+    --primary-color: #0d6efd;
+    --secondary-color: #6c757d;
+    --success-color: #198754;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #0dcaf0;
+    --light-color: #f8f9fa;
+    --dark-color: #212529;
+    
+    --gradient-primary: linear-gradient(135deg, #0d6efd 0%, #0043a8 100%);
+    --gradient-success: linear-gradient(135deg, #198754 0%, #0f5132 100%);
+    --gradient-warning: linear-gradient(135deg, #ffc107 0%, #ffca2c 100%);
+    
+    --shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    --shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+    
+    --transition-base: all 0.3s ease;
+}
+
+/* ==================== Global Styles ==================== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    line-height: 1.6;
+}
+
+a {
+    transition: var(--transition-base);
+}
+
+/* ==================== Hero Section ==================== */
+.hero-section {
+    background: var(--gradient-primary);
+    padding: 4rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="rgba(255,255,255,0.1)"/></svg>');
+    background-size: 100px 100px;
+    opacity: 0.1;
+}
+
+.hero-icon {
+    font-size: 8rem;
+    opacity: 0.9;
+}
+
+/* ==================== Animations ==================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.8s ease-out;
+}
+
+.animate-bounce {
+    animation: bounce 2s infinite;
+}
+
+.animate-pulse {
+    animation: pulse 2s infinite;
+}
+
+/* ==================== Hover Effects ==================== */
+.hover-scale {
+    transition: var(--transition-base);
+}
+
+.hover-scale:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-lg);
+}
+
+.hover-lift {
+    transition: var(--transition-base);
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.hover-white {
+    transition: var(--transition-base);
+}
+
+.hover-white:hover {
+    color: #fff !important;
+}
+
+/* ==================== Cards ==================== */
+.card {
+    border-radius: 12px;
+    overflow: hidden;
+    transition: var(--transition-base);
+}
+
+.card-header {
+    border-radius: 12px 12px 0 0 !important;
+}
+
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+/* ==================== Form Styles ==================== */
+.form-control,
+.form-select {
+    border-radius: 8px;
+    border: 2px solid #e9ecef;
+    padding: 0.75rem 1rem;
+    transition: var(--transition-base);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.form-label {
+    font-weight: 600;
+    color: var(--dark-color);
+    margin-bottom: 0.5rem;
+}
+
+.form-check-input {
+    cursor: pointer;
+}
+
+.form-check-label {
+    cursor: pointer;
+    font-weight: 500;
+}
+
+/* ==================== Buttons ==================== */
+.btn {
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    transition: var(--transition-base);
+}
+
+.btn-lg {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+}
+
+.btn-primary {
+    background: var(--gradient-primary);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #0043a8 0%, #0d6efd 100%);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.btn-outline-primary:hover {
+    background: var(--gradient-primary);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+/* ==================== Progress Bar ==================== */
+.progress {
+    height: 25px;
+    border-radius: 12px;
+    background-color: #e9ecef;
+    overflow: hidden;
+}
+
+.progress-bar {
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* ==================== Alerts ==================== */
+.alert {
+    border-radius: 12px;
+    border: none;
+    font-weight: 500;
+}
+
+.alert-dismissible .btn-close {
+    padding: 1rem;
+}
+
+/* ==================== Badges ==================== */
+.badge {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+/* ==================== Navbar ==================== */
+.navbar {
+    box-shadow: var(--shadow);
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.nav-link {
+    font-weight: 500;
+    padding: 0.75rem 1rem !important;
+    border-radius: 8px;
+    transition: var(--transition-base);
+}
+
+.nav-link:hover,
+.nav-link.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+/* ==================== Footer ==================== */
+footer {
+    margin-top: auto;
+}
+
+footer a {
+    text-decoration: none;
+    transition: var(--transition-base);
+}
+
+footer a:hover {
+    color: #fff !important;
+}
+
+/* ==================== Responsive Design ==================== */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 3rem 0;
+    }
+    
+    .hero-icon {
+        font-size: 5rem;
+    }
+    
+    .display-4 {
+        font-size: 2rem;
+    }
+    
+    .btn-lg {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+    }
+    
+    .card-body {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        padding: 2rem 0;
+    }
+    
+    .display-4 {
+        font-size: 1.75rem;
+    }
+    
+    .lead {
+        font-size: 1rem;
+    }
+    
+    .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    .d-flex.gap-3 {
+        flex-direction: column;
+        gap: 0.5rem !important;
+    }
+}
+
+/* ==================== Loading Spinner ==================== */
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* ==================== Developer Avatar ==================== */
+.developer-avatar {
+    box-shadow: var(--shadow);
+    transition: var(--transition-base);
+}
+
+.developer-avatar:hover {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-lg);
+}
+
+/* ==================== Gradient Backgrounds ==================== */
+.bg-gradient-primary {
+    background: var(--gradient-primary);
+}
+
+.bg-gradient-success {
+    background: var(--gradient-success);
+}
+
+.bg-gradient-warning {
+    background: var(--gradient-warning);
+}
+
+/* ==================== Custom Scrollbar ==================== */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #0043a8;
+}
+
+/* ==================== Smooth Scrolling ==================== */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ==================== Table Styles ==================== */
+.table {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.table thead {
+    background: var(--gradient-primary);
+    color: white;
+}
+
+/* ==================== List Group ==================== */
+.list-group-item {
+    border-left: 4px solid transparent;
+    transition: var(--transition-base);
+}
+
+.list-group-item:hover {
+    background-color: #f8f9fa;
+    border-left-color: var(--primary-color);
+}
+
+/* ==================== Input Group ==================== */
+.input-group-text {
+    background-color: var(--light-color);
+    border: 2px solid #e9ecef;
+    font-weight: 600;
+}
+
+/* ==================== Modal ==================== */
+.modal-content {
+    border-radius: 12px;
+    border: none;
+}
+
+.modal-header {
+    background: var(--gradient-primary);
+    color: white;
+    border-radius: 12px 12px 0 0;
+}
+
+.modal-footer {
+    border-radius: 0 0 12px 12px;
+}
+
+/* ==================== Tooltip ==================== */
+.tooltip-inner {
+    background-color: var(--dark-color);
+    border-radius: 6px;
+}
+
+/* ==================== Print Styles ==================== */
+@media print {
+    .navbar,
+    .footer,
+    .btn {
+        display: none !important;
+    }
+    
+    .card {
+        box-shadow: none;
+        border: 1px solid #dee2e6;
+    }
+}

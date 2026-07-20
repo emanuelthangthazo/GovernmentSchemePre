@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Error - Government Scheme Predictor{% endblock %}
+
+{% block content %}
+<!-- Error Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-lg">
+                    <div class="card-header bg-danger text-white py-4">
+                        <div class="text-center">
+                            <i class="bi bi-exclamation-triangle-fill display-1 mb-2"></i>
+                            <h2 class="card-title fw-bold mb-0">Error Occurred</h2>
+                        </div>
+                    </div>
+                    <div class="card-body p-5">
+                        <div class="text-center mb-4">
+                            <h3 class="fw-bold text-danger mb-3">
+                                <i class="bi bi-x-circle me-2"></i>Something Went Wrong
+                            </h3>
+                            <p class="lead text-muted">
+                                {{ error_message or "An unexpected error occurred while processing your request." }}
+                            </p>
+                        </div>
+
+                        {% if error_code %}
+                        <div class="alert alert-warning" role="alert">
+                            <strong>Error Code:</strong> {{ error_code }}
+                        </div>
+                        {% endif %}
+
+                        <div class="bg-light rounded p-4 mb-4">
+                            <h5 class="fw-bold mb-3">
+                                <i class="bi bi-lightbulb me-2"></i>What You Can Do
+                            </h5>
+                            <ul class="mb-0">
+                                <li>Refresh the page and try again</li>
+                                <li>Check your internet connection</li>
+                                <li>Ensure all form fields are filled correctly</li>
+                                <li>Contact support if the problem persists</li>
+                            </ul>
+                        </div>
+
+                        <div class="text-center">
+                            <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg px-5 py-3 fw-bold hover-scale me-2">
+                                <i class="bi bi-house-door me-2"></i>Go to Home
+                            </a>
+                            <a href="{{ url_for('contact') }}" class="btn btn-outline-primary btn-lg px-5 py-3 fw-bold">
+                                <i class="bi bi-envelope me-2"></i>Contact Support
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

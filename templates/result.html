@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}Prediction Result - Government Scheme Predictor{% endblock %}
+
+{% block content %}
+<!-- Result Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <!-- Success Alert -->
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <h4 class="alert-heading fw-bold">
+                        <i class="bi bi-check-circle-fill me-2"></i>Prediction Complete!
+                    </h4>
+                    <p class="mb-0">Based on your profile, our ML model has identified the most suitable government scheme for you.</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+                <!-- Result Card -->
+                <div class="card border-0 shadow-lg mb-4">
+                    <div class="card-header bg-gradient-success text-white py-4">
+                        <div class="text-center">
+                            <i class="bi bi-trophy-fill display-4 mb-2"></i>
+                            <h2 class="card-title fw-bold mb-0">Predicted Government Scheme</h2>
+                        </div>
+                    </div>
+                    <div class="card-body p-5">
+                        <div class="text-center mb-4">
+                            <h1 class="display-4 fw-bold text-primary mb-3">{{ predicted_scheme }}</h1>
+                            <div class="d-inline-block bg-success bg-opacity-10 rounded-pill px-4 py-2">
+                                <span class="text-success fw-bold fs-5">
+                                    <i class="bi bi-percent me-1"></i>
+                                    Confidence: {{ "%.2f"|format(confidence) }}%
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Confidence Progress Bar -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">Prediction Confidence</label>
+                            <div class="progress" style="height: 25px;">
+                                <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" 
+                                     role="progressbar" 
+                                     style="width: {{ confidence }}%;" 
+                                     aria-valuenow="{{ confidence }}" 
+                                     aria-valuemin="0" 
+                                     aria-valuemax="100">
+                                    {{ "%.2f"|format(confidence) }}%
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Profile Summary -->
+                        <div class="bg-light rounded p-4 mb-4">
+                            <h5 class="fw-bold mb-3">
+                                <i class="bi bi-person-circle me-2"></i>Your Profile Summary
+                            </h5>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <p class="mb-1"><strong>Age:</strong> {{ form_data.age or 'Not Specified' }}</p>
+                                    <p class="mb-1"><strong>Gender:</strong> {{ form_data.gender or 'Not Specified' }}</p>
+                                    <p class="mb-1"><strong>Income:</strong> ₹{{ form_data.income or 'Not Specified' }}</p>
+                                    <p class="mb-1"><strong>Occupation:</strong> {{ form_data.occupation or 'Not Specified' }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="mb-1"><strong>District:</strong> {{ form_data.district or 'Not Specified' }}</p>
+                                    <p class="mb-1"><strong>BPL Status:</strong> {{ form_data.bpl or 'Not Specified' }}</p>
+                                    <p class="mb-1"><strong>Marital Status:</strong> {{ form_data.marital_status or 'Not Specified' }}</p>
+                                    <p class="mb-1"><strong>Farmer:</strong> {{ form_data.farmer or 'Not Specified' }}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Information Note -->
+                        <div class="alert alert-info" role="alert">
+                            <i class="bi bi-info-circle-fill me-2"></i>
+                            <strong>Note:</strong> This prediction is based on the information provided. Please verify scheme eligibility with official government sources before applying.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg w-100 fw-bold hover-scale">
+                            <i class="bi bi-arrow-repeat me-2"></i>New Prediction
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="{{ url_for('about') }}" class="btn btn-outline-primary btn-lg w-100 fw-bold">
+                            <i class="bi bi-info-circle me-2"></i>Learn More
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.bg-gradient-success {
+    background: linear-gradient(135deg, #198754 0%, #20c997 100%);
+}
+</style>
+{% endblock %}
