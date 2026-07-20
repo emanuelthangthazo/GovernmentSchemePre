@@ -6,15 +6,15 @@
 
 {% block content %}
 <!-- Hero Section -->
-<section class="hero-section bg-gradient-primary text-white py-5">
+<section class="hero-section text-white py-5">
     <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <h1 class="display-4 fw-bold mb-3 animate-fade-in">
+        <div class="row">
+            <div class="col-lg-8 col-xl-7">
+                <h1 class="display-4 fw-bold mb-3 animate-fade-in" style="color: #FFFFFF;">
                     <i class="bi bi-building-gear me-2"></i>
                     Government Scheme Predictor
                 </h1>
-                <p class="lead mb-4">
+                <p class="lead mb-4" style="color: #F1F5F9;">
                     Discover eligible government schemes tailored to your profile using our intelligent Machine Learning system.
                 </p>
                 <div class="d-flex gap-3">
@@ -24,11 +24,6 @@
                     <a href="{{ url_for('about') }}" class="btn btn-outline-light btn-lg fw-bold">
                         <i class="bi bi-info-circle me-2"></i>Learn More
                     </a>
-                </div>
-            </div>
-            <div class="col-lg-6 text-center">
-                <div class="hero-icon animate-bounce">
-                    <i class="bi bi-robot display-1"></i>
                 </div>
             </div>
         </div>
@@ -176,11 +171,12 @@
                                     </label>
                                     <select class="form-select" id="district" name="district" required>
                                         <option value="">Select District</option>
-                                        <option value="District1">District 1</option>
-                                        <option value="District2">District 2</option>
-                                        <option value="District3">District 3</option>
-                                        <option value="District4">District 4</option>
-                                        <option value="District5">District 5</option>
+                                        <option value="Dimapur">Dimapur</option>
+                                        <option value="Kohima">Kohima</option>
+                                        <option value="Mokokchung">Mokokchung</option>
+                                        <option value="Mon">Mon</option>
+                                        <option value="Phek">Phek</option>
+                                        <option value="Wokha">Wokha</option>
                                     </select>
                                     <div class="invalid-feedback">Please select your district</div>
                                 </div>
