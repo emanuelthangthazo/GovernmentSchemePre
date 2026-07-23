@@ -64,7 +64,7 @@ a {
 /* ==================== Hero Section ==================== */
 .hero-section {
     /* Nagaland landscape background with dark overlay for text readability */
-    background: 
+    background:
         linear-gradient(
             rgba(15, 76, 129, 0.75),
             rgba(46, 139, 87, 0.65)
@@ -291,6 +291,26 @@ a {
     background: var(--gradient-primary);
 }
 
+/* ==================== Conditional Field Animations ==================== */
+.pregnancy-section,
+.senior-citizen-section {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.pregnancy-section.show,
+.senior-citizen-section.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.pregnancy-section.hide,
+.senior-citizen-section.hide {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
 /* ==================== Buttons ==================== */
 .btn {
     border-radius: 12px;
@@ -514,16 +534,16 @@ footer .social-icon:hover {
     .hero-section {
         padding: 3rem 0;
     }
-    
+
     .display-4 {
         font-size: 2rem;
     }
-    
+
     .btn-lg {
         padding: 0.75rem 1.5rem;
         font-size: 1rem;
     }
-    
+
     .card-body {
         padding: 1.5rem;
     }
@@ -533,7 +553,7 @@ footer .social-icon:hover {
     .hero-section {
         padding: 2rem 0;
     }
-    
+
     .display-4 {
         font-size: 1.75rem;
     }
@@ -618,6 +638,45 @@ footer .social-icon:hover {
 .profile-summary strong {
     color: var(--primary-color);
     font-weight: 600;
+}
+
+/* ==================== Recommendation Cards ==================== */
+.recommendation-card {
+    border: 1px solid #e0e6ed;
+    border-radius: 12px;
+    transition: var(--transition-base);
+    background: var(--white);
+}
+
+.recommendation-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+    border-color: var(--secondary-color);
+}
+
+.recommendation-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(46, 139, 87, 0.1) 0%, rgba(61, 163, 107, 0.1) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--secondary-color);
+    flex-shrink: 0;
+}
+
+.recommendation-reason {
+    padding: 0.75rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 8px;
+    border-left: 3px solid var(--secondary-color);
+}
+
+.recommendation-eligibility .badge {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 20px;
 }
 
 /* ==================== Custom Scrollbar ==================== */

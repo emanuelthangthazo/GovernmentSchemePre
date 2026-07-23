@@ -78,6 +78,50 @@
                     </div>
                 </div>
 
+                <!-- Recommended Schemes Section -->
+                {% if recommendations %}
+                <div class="card border-0 shadow-lg mb-4">
+                    <div class="card-header bg-gradient-warning text-white py-4">
+                        <div class="text-center">
+                            <i class="bi bi-lightbulb-fill display-4 mb-2"></i>
+                            <h2 class="card-title fw-bold mb-0">Recommended Schemes For You</h2>
+                        </div>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="row g-4">
+                            {% for rec in recommendations %}
+                            <div class="col-md-6">
+                                <div class="card recommendation-card h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-start mb-3">
+                                            <div class="recommendation-icon me-3">
+                                                <i class="bi {{ rec.icon }} fs-3"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="card-title fw-bold mb-2">{{ rec.name }}</h5>
+                                                <p class="card-text text-muted small mb-2">{{ rec.description }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="recommendation-reason mb-3">
+                                            <small class="text-muted">
+                                                <i class="bi bi-check-circle-fill text-success me-1"></i>
+                                                Recommended because: {{ rec.reason }}
+                                            </small>
+                                        </div>
+                                        <div class="recommendation-eligibility">
+                                            <span class="badge bg-success">
+                                                <i class="bi bi-person-check me-1"></i>{{ rec.eligibility }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
                 <!-- Action Buttons -->
                 <div class="row g-3">
                     <div class="col-md-6">

@@ -126,26 +126,197 @@ def encode_input_data(form_data):
 def create_prediction_dataframe(encoded_data):
     """
     Create a DataFrame with the exact feature order used during training.
-    
+
     Args:
         encoded_data: Dictionary with encoded feature values
-        
+
     Returns:
         pandas DataFrame with correct feature order
     """
     # Create dictionary with all features, filling missing ones with 0
     prediction_data = {}
-    
+
     for column in feature_columns:
         if column in encoded_data:
             prediction_data[column] = encoded_data[column]
         else:
             prediction_data[column] = 0
-    
+
     # Create DataFrame with correct column order
     df = pd.DataFrame([prediction_data], columns=feature_columns)
-    
+
     return df
+
+
+def generate_recommendations(form_data):
+    """
+    Generate rule-based scheme recommendations based on form data.
+
+    Args:
+        form_data: Dictionary containing form submission data
+
+    Returns:
+        List of recommended scheme dictionaries
+    """
+    recommendations = []
+
+    # Parse income for low income check
+    try:
+        income = float(form_data.get('income', 0)) if form_data.get('income') else 0
+    except (ValueError, TypeError):
+        income = 0
+
+    # Farmer recommendations
+    if form_data.get('farmer') == 'Yes':
+        recommendations.append({
+            'name': 'PM Kisan Samman Nidhi',
+            'icon': 'bi-plant',
+            'description': 'Income support of ₹6,000 per year for farmers',
+            'reason': 'Farmer',
+            'eligibility': 'All Farmers'
+        })
+        recommendations.append({
+            'name': 'Kisan Credit Card (KCC)',
+            'icon': 'bi-credit-card',
+            'description': 'Credit facility for farmers for agricultural needs',
+            'reason': 'Farmer',
+            'eligibility': 'Farmers with land'
+        })
+
+    # Student recommendations
+    if form_data.get('student') == 'Yes':
+        recommendations.append({
+            'name': 'National Scholarship Portal (NSP)',
+            'icon': 'bi-mortarboard',
+            'description': 'Central and state government scholarships for students',
+            'reason': 'Student',
+            'eligibility': 'Students based on merit/income'
+        })
+        recommendations.append({
+            'name': 'AICTE Scholarship',
+            'icon': 'bi-book',
+            'description': 'Technical education scholarships for meritorious students',
+            'reason': 'Student',
+            'eligibility': 'Technical students'
+        })
+
+    # Disability recommendations
+    if form_data.get('disability') == 'Yes':
+        recommendations.append({
+            'name': 'Unique Disability ID (UDID)',
+            'icon': 'bi-person-badge',
+            'description': 'Universal identity card for persons with disabilities',
+            'reason': 'Disability',
+            'eligibility': 'Persons with disabilities'
+        })
+        recommendations.append({
+            'name': 'Assistance to Disabled Persons',
+            'icon': 'bi-heart',
+            'description': 'Financial assistance for aids and appliances',
+            'reason': 'Disability',
+            'eligibility': 'Persons with disabilities'
+        })
+
+    # Pregnancy recommendations
+    if form_data.get('pregnant') == '1':
+        recommendations.append({
+            'name': 'Pradhan Mantri Matru Vandana Yojana (PMMVY)',
+            'icon': 'bi-person-heart',
+            'description': 'Maternity benefit of ₹5,000 for pregnant women',
+            'reason': 'Pregnant',
+            'eligibility': 'Pregnant women & lactating mothers'
+        })
+
+    # Senior Citizen recommendations
+    if form_data.get('senior_citizen') == '1':
+        recommendations.append({
+            'name': 'Atal Pension Yojana',
+            'icon': 'bi-piggy-bank',
+            'description': 'Pension scheme for unorganized sector workers',
+            'reason': 'Senior Citizen',
+            'eligibility': 'Age 18-40 years'
+        })
+        recommendations.append({
+            'name': 'National Social Assistance Programme',
+            'icon': 'bi-shield-check',
+            'description': 'Pension support for elderly, widows, and disabled',
+            'reason': 'Senior Citizen',
+            'eligibility': 'BPL families'
+        })
+
+    # Woman SHG recommendations
+    if form_data.get('woman_shg') == 'Yes':
+        recommendations.append({
+            'name': 'National Rural Livelihood Mission (NRLM)',
+            'icon': 'bi-people',
+            'description': 'Poverty alleviation program for rural women SHGs',
+            'reason': 'Woman SHG Member',
+            'eligibility': 'Rural women SHGs'
+        })
+        recommendations.append({
+            'name': 'Mudra Yojana',
+            'icon': 'bi-cash',
+            'description': 'Loans for micro enterprises and small businesses',
+            'reason': 'Woman SHG Member',
+            'eligibility': 'Micro enterprises'
+        })
+
+    # Street Vendor recommendations
+    if form_data.get('street_vendor') == 'Yes':
+        recommendations.append({
+            'name': 'PM SVANidhi',
+            'icon': 'bi-cart',
+            'description': 'Working capital loan for street vendors',
+            'reason': 'Street Vendor',
+            'eligibility': 'Street vendors'
+        })
+
+    # Artisan recommendations
+    if form_data.get('artisan') == 'Yes':
+        recommendations.append({
+            'name': 'PM Vishwakarma',
+            'icon': 'bi-tools',
+            'description': 'Support for traditional artisans and craftsmen',
+            'reason': 'Artisan',
+            'eligibility': 'Traditional artisans'
+        })
+
+    # Low income recommendations
+    if income < 100000:  # Below 1 lakh
+        recommendations.append({
+            'name': 'Ayushman Bharat',
+            'icon': 'bi-hospital',
+            'description': 'Health insurance coverage of ₹5 lakh per family',
+            'reason': 'Low Income',
+            'eligibility': 'BPL/AAY families'
+        })
+        recommendations.append({
+            'name': 'Pradhan Mantri Awas Yojana (PMAY)',
+            'icon': 'bi-house',
+            'description': 'Housing for all with interest subsidy',
+            'reason': 'Low Income',
+            'eligibility': 'EWS/LIG/MIG'
+        })
+
+    # Rural household recommendations
+    if form_data.get('rural_household') == 'Yes':
+        recommendations.append({
+            'name': 'PMAY Gramin',
+            'icon': 'bi-house-heart',
+            'description': 'Rural housing scheme with financial assistance',
+            'reason': 'Rural Household',
+            'eligibility': 'Rural BPL families'
+        })
+        recommendations.append({
+            'name': 'MGNREGA',
+            'icon': 'bi-hammer',
+            'description': 'Guaranteed wage employment for rural households',
+            'reason': 'Rural Household',
+            'eligibility': 'Rural households'
+        })
+
+    # Limit to 5 recommendations
+    return recommendations[:5]
 
 
 # Load model and encoders on startup
@@ -193,7 +364,9 @@ def predict():
             'street_vendor': request.form.get('street_vendor'),
             'artisan': request.form.get('artisan'),
             'woman_shg': request.form.get('woman_shg'),
-            'rural_household': request.form.get('rural_household')
+            'rural_household': request.form.get('rural_household'),
+            'pregnant': request.form.get('pregnant', '0'),  # Default to 0 if not provided
+            'senior_citizen': request.form.get('senior_citizen', '0')  # Default to 0 if not provided
         }
         
         # Validate required fields (using lowercase keys to match form_data)
@@ -248,12 +421,16 @@ def predict():
             predicted_scheme = str(prediction_encoded)
         
         logger.info(f"Prediction made: {predicted_scheme} with confidence: {confidence:.2f}%")
-        
+
+        # Generate rule-based recommendations
+        recommendations = generate_recommendations(form_data)
+
         return render_template(
             'result.html',
             predicted_scheme=predicted_scheme,
             confidence=confidence,
-            form_data=form_data
+            form_data=form_data,
+            recommendations=recommendations
         )
     
     except Exception as e:

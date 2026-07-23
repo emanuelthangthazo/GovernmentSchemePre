@@ -100,7 +100,7 @@
                                     <label for="age" class="form-label fw-semibold">
                                         Age <span class="text-danger">*</span>
                                     </label>
-                                    <input type="number" class="form-control" id="age" name="age" 
+                                    <input type="number" class="form-control" id="age" name="age"
                                            min="0" max="120" required placeholder="Enter your age">
                                     <div class="invalid-feedback">Please enter a valid age (0-120)</div>
                                 </div>
@@ -115,6 +115,58 @@
                                         <option value="Other">Other</option>
                                     </select>
                                     <div class="invalid-feedback">Please select your gender</div>
+                                </div>
+                            </div>
+
+                            <!-- Pregnancy Information (Conditional - Only for Female) -->
+                            <div id="pregnancy-section" class="pregnancy-section d-none mb-4">
+                                <h5 class="form-section-title">
+                                    <i class="bi bi-heart-pulse me-2"></i>Pregnancy Information
+                                </h5>
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label fw-semibold">
+                                            Pregnant <span class="text-danger">*</span>
+                                        </label>
+                                        <div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="pregnant"
+                                                       id="pregnant_yes" value="1">
+                                                <label class="form-check-label" for="pregnant_yes">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="pregnant"
+                                                       id="pregnant_no" value="0">
+                                                <label class="form-check-label" for="pregnant_no">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Senior Citizen Information (Conditional - Age >= 60) -->
+                            <div id="senior-citizen-section" class="senior-citizen-section d-none mb-4">
+                                <h5 class="form-section-title">
+                                    <i class="bi bi-person-wheelchair me-2"></i>Senior Citizen Information
+                                </h5>
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label fw-semibold">
+                                            Senior Citizen <span class="text-danger">*</span>
+                                        </label>
+                                        <div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="senior_citizen"
+                                                       id="senior_citizen_yes" value="1">
+                                                <label class="form-check-label" for="senior_citizen_yes">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="senior_citizen"
+                                                       id="senior_citizen_no" value="0">
+                                                <label class="form-check-label" for="senior_citizen_no">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 

@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeNavbar();
     initializeAnimations();
     initializeTooltips();
+    initializeConditionalFields();
 });
 
 /**
@@ -138,6 +139,98 @@ function initializeTooltips() {
     const tooltipList = [...tooltipTriggerList].map(
         tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl)
     );
+}
+
+/**
+ * Initialize conditional field visibility based on gender selection
+ */
+function initializeConditionalFields() {
+    const genderSelect = document.getElementById('gender');
+    const pregnancySection = document.getElementById('pregnancy-section');
+    const pregnantRadios = document.querySelectorAll('input[name="pregnant"]');
+    const ageInput = document.getElementById('age');
+    const seniorCitizenSection = document.getElementById('senior-citizen-section');
+
+    if (!genderSelect || !pregnancySection) return;
+
+    // Function to toggle pregnancy section
+    function togglePregnancySection() {
+        const gender = genderSelect.value;
+
+        if (gender === 'Female') {
+            // Show pregnancy section with animation
+            pregnancySection.classList.remove('d-none');
+            // Small delay to allow display:block to apply before opacity transition
+            setTimeout(() => {
+                pregnancySection.classList.add('show');
+                pregnancySection.classList.remove('hide');
+            }, 10);
+        } else {
+            // Hide pregnancy section with animation
+            pregnancySection.classList.remove('show');
+            pregnancySection.classList.add('hide');
+            // Wait for animation to complete before hiding
+            setTimeout(() => {
+                pregnancySection.classList.add('d-none');
+            }, 400);
+        }
+    }
+
+    // Function to toggle senior citizen section
+    function toggleSeniorCitizenSection() {
+        if (!ageInput || !seniorCitizenSection) return;
+
+        const age = parseInt(ageInput.value) || 0;
+
+        if (age >= 60) {
+            // Show senior citizen section with animation
+            seniorCitizenSection.classList.remove('d-none');
+            setTimeout(() => {
+                seniorCitizenSection.classList.add('show');
+                seniorCitizenSection.classList.remove('hide');
+            }, 10);
+        } else {
+            // Hide senior citizen section with animation
+            seniorCitizenSection.classList.remove('show');
+            seniorCitizenSection.classList.add('hide');
+            setTimeout(() => {
+                seniorCitizenSection.classList.add('d-none');
+            }, 400);
+        }
+    }
+
+    // Listen for gender changes
+    genderSelect.addEventListener('change', togglePregnancySection);
+
+    // Listen for age changes
+    if (ageInput) {
+        ageInput.addEventListener('input', toggleSeniorCitizenSection);
+        ageInput.addEventListener('change', toggleSeniorCitizenSection);
+    }
+
+    // Handle form submission - auto-set defaults for hidden sections
+    const predictionForm = document.getElementById('predictionForm');
+    if (predictionForm) {
+        predictionForm.addEventListener('submit', function(e) {
+            const gender = genderSelect.value;
+            if (gender !== 'Female') {
+                // Ensure pregnant field is set to 0 for non-female genders
+                const pregnantInput = document.querySelector('input[name="pregnant"][value="0"]');
+                if (pregnantInput) {
+                    pregnantInput.checked = true;
+                }
+            }
+
+            const age = parseInt(ageInput.value) || 0;
+            if (age < 60) {
+                // Ensure senior_citizen field is set to 0 for age < 60
+                const seniorCitizenInput = document.querySelector('input[name="senior_citizen"][value="0"]');
+                if (seniorCitizenInput) {
+                    seniorCitizenInput.checked = true;
+                }
+            }
+        });
+    }
 }
 
 /**
